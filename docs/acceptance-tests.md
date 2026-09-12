@@ -3,13 +3,13 @@
 Generation 0 passes only when its material claims have automated evidence.
 
 ## AT-001 Immutable ingestion
-The same raw fixture produces the same content hash. Preserved source material is not silently mutable.
+The same exact raw payload bytes produce the same raw payload hash. Parsing or normalization cannot change the preserved raw digest.
 
 ## AT-002 Schema rejection
 Malformed input cannot enter canonical projection without an explicit failure state.
 
 ## AT-003 Bitemporal reconstruction
-Fixtures reproduce both world-at-T and knowledge-at-K expectations.
+Fixtures reproduce both world-at-T and knowledge-at-K expectations using declared interval semantics.
 
 ## AT-004 Evidence lineage
 Every material claim resolves to preserved evidence and versioned inference records.
@@ -48,7 +48,15 @@ Low-evidence, high-mission-impact action candidates cannot cross the automated-r
 Every material decision receipt includes required evidence references, versions, simulation result, authorization state, and outcome fields.
 
 ## AT-016 Deterministic replay
-Equivalent evidence, schema, code, policies, solver configuration, and seeds produce equivalent canonical result artifacts.
+Identical preserved evidence, ingest ordering, schema versions, code version, policy versions, solver configuration, and seeds produce the same canonical semantic output digest.
+
+Execution-specific metadata such as benchmark run identifier or wall-clock duration is excluded from the semantic digest and is validated separately.
 
 ## AT-017 Degraded mode
 Loss or staleness of a required capability changes explicit capability-health state.
+
+## AT-018 Duplicate preservation
+Repeated delivery of the same source material does not destroy receipt history and does not double-count the semantic observation after deduplication rules are applied.
+
+## AT-019 Ordering collision
+Records with equal source or receipt timestamps replay deterministically according to preserved ordering keys and versioned tie-break policy.
