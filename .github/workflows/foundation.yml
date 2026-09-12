@@ -1,0 +1,66 @@
+name: KORDAXIS Foundation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  repository-integrity:
+    name: repository-integrity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+
+      - name: Verify repository foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+
+          required_files=(
+            "README.md"
+            "SECURITY.md"
+            "CONTRIBUTING.md"
+            ".github/PULL_REQUEST_TEMPLATE.md"
+            ".github/dependabot.yml"
+            "docs/manifesto.md"
+            "docs/problem-definition.md"
+            "docs/threat-model.md"
+            "docs/adr/0001-generation-zero-architecture.md"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "Missing required repository contract: $file"
+              exit 1
+            fi
+          done
+
+      - name: Reject floating GitHub Action references
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          violations="$(
+            grep -R \
+              --include='*.yml' \
+              --include='*.yaml' \
+              -nE 'uses:[[:space:]]+[^[:space:]]+@(main|master|v[0-9]+([.]?[0-9]*)*)[[:space:]]*$' \
+              .github/workflows || true
+          )"
+
+          if [[ -n "$violations" ]]; then
+            echo "Floating GitHub Action reference detected:"
+            echo "$violations"
+            exit 1
+          fi

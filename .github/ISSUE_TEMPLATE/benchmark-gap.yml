@@ -1,0 +1,48 @@
+name: Benchmark / Evaluation Gap
+description: Define a measurable gap between a KORDAXIS claim and its evidence.
+title: "[BENCHMARK] "
+labels:
+  - "type:benchmark"
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim being evaluated
+      description: Which KORDAXIS capability claim requires evidence?
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Current evidence gap
+      description: Why is the existing measurement insufficient?
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Evaluation scenario
+      description: What dataset, synthetic scenario, or experiment will be used?
+    validations:
+      required: true
+  - type: textarea
+    id: metric
+    attributes:
+      label: Metric
+      description: Define the metric precisely.
+    validations:
+      required: true
+  - type: textarea
+    id: threshold
+    attributes:
+      label: Acceptance threshold
+      description: Define success before running the experiment.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility requirements
+      description: Seeds, versions, fixtures, environment, run count, confidence intervals, etc.
+    validations:
+      required: true

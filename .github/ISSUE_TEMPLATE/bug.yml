@@ -1,0 +1,48 @@
+name: Defect / Invariant Violation
+description: Report reproducible incorrect behavior or a violated KORDAXIS invariant.
+title: "[BUG] "
+labels:
+  - "type:bug"
+body:
+  - type: textarea
+    id: invariant
+    attributes:
+      label: Affected invariant or contract
+      description: Which expected property is violated?
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide the smallest deterministic reproduction possible.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Logs, fixture IDs, hashes, test output, or replay information.
+    validations:
+      required: true
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression test
+      description: What automated test should prevent recurrence?
+    validations:
+      required: true

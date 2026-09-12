@@ -1,0 +1,61 @@
+name: Engineering Proposal
+description: Propose a significant architecture, security, or capability change.
+title: "[ENGINEERING] "
+labels:
+  - "type:engineering"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for meaningful engineering problems. Small maintenance work does not require an issue.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete problem exists?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: What demonstrates that this problem is real?
+    validations:
+      required: true
+  - type: textarea
+    id: property
+    attributes:
+      label: Security or system property
+      description: Which invariant, trust property, correctness property, or capability is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed direction
+      description: Describe the proposed approach without hiding trade-offs.
+    validations:
+      required: true
+  - type: textarea
+    id: failure_modes
+    attributes:
+      label: New failure modes
+      description: What can fail if this proposal is implemented?
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: How will we prove that the change works?
+    validations:
+      required: true
+  - type: checkboxes
+    id: discipline
+    attributes:
+      label: Engineering discipline
+      options:
+        - label: I verified that this work is substantial enough to require an issue.
+          required: true
+        - label: I have not selected a technology before defining the problem.
+          required: true
