@@ -1,6 +1,15 @@
 """Ingress contracts for preserving raw cyber telemetry."""
 
 from .digest import sha256_bytes
-from .envelope import RawEventEnvelope, RawPayload
+from .envelope import (
+    RawEventDraft,
+    RawEventEnvelope,
+    RawPayload,
+)
 
-__all__ = ["RawEventEnvelope", "RawPayload", "sha256_bytes"]
+__all__ = [
+    "RawEventDraft",
+    "RawEventEnvelope",
+    "RawPayload",
+    "sha256_bytes",
+]
