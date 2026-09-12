@@ -1,0 +1,52 @@
+name: KORDAXIS Python Core
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/python-core.yml"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/python-core.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    name: unit-tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.12"
+          - "3.13"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Show interpreter version
+        run: python --version
+
+      - name: Run unit tests without third-party runtime dependencies
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -p 'test_*.py' -v

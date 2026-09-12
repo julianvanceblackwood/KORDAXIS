@@ -1,0 +1,13 @@
+[project]
+name = "kordaxis"
+version = "0.0.1"
+description = "Evidence-native cyber mission reasoning and decision system."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+  { name = "Julian Vance Blackwood" }
+]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/julianvanceblackwood/KORDAXIS"
