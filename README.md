@@ -466,7 +466,7 @@ Controlled variants later introduce:
 
 ---
 
-## Generation-0 proof obligations
+## Generation 0 : proof obligations
 
 Generation 0 does not pass because its output looks convincing.
 
@@ -530,7 +530,7 @@ See [Benchmark methodology](docs/benchmark-methodology.md).
 
 ---
 
-## Generation-0 architecture
+## Generation 0:  architecture
 
 Generation 0 begins as a **modular monolith**.
 
@@ -574,7 +574,7 @@ See [Generation-0 architecture](docs/generation-zero-architecture.md) and [ADR-0
 
 ## Current engineering focus
 
-**Generation 0 — Evidence foundation**
+**Generation 0: Evidence foundation**
 
 The active implementation milestone is:
 
@@ -601,9 +601,9 @@ Active branch:
 
 `feat/raw-evidence-envelope`
 
-Primary Generation-0 tracking issue:
+Primary Generation 0: tracking issue:
 
-[#1 — Prove the evidence-to-decision vertical slice](https://github.com/julianvanceblackwood/KORDAXIS/issues/1)
+[#1 Prove the evidence-to-decision vertical slice](https://github.com/julianvanceblackwood/KORDAXIS/issues/1)
 
 No additional issue is created for routine work inside this already-defined engineering objective.
 
