@@ -33,7 +33,9 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         assert DATABASE_URL is not None
 
-        cls.connection = connect(DATABASE_URL)
+        cls.connection = connect(
+            DATABASE_URL
+        )
 
         cls.store = PostgresEvidenceStore(
             cls.connection
@@ -52,6 +54,12 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
     ) -> RawEventDraft:
         unique = uuid4().hex
 
+        payload_content = (
+            content
+            if content is not None
+            else f'{{"id":"{unique}"}}'.encode()
+        )
+
         return RawEventDraft(
             envelope_id=(
                 envelope_id
@@ -63,10 +71,7 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
             received_at=datetime.now(UTC),
             media_type=media_type,
             payload=RawPayload.from_bytes(
-                content=(
-                    content
-                    or f'{{"id":"{unique}"}}'.encode()
-                )
+                content=payload_content,
             ),
         )
 
@@ -75,7 +80,9 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
             content=b'{"exact":"bytes"}',
         )
 
-        persisted = self.store.append(draft)
+        persisted = self.store.append(
+            draft
+        )
 
         loaded = self.store.load(
             persisted.envelope_id
@@ -94,6 +101,29 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
         self.assertEqual(
             loaded.envelope_id,
             draft.envelope_id,
+        )
+
+    def test_empty_payload_round_trip_is_preserved(self) -> None:
+        draft = self._draft(
+            content=b"",
+        )
+
+        persisted = self.store.append(
+            draft
+        )
+
+        loaded = self.store.load(
+            persisted.envelope_id
+        )
+
+        self.assertEqual(
+            loaded.payload.content,
+            b"",
+        )
+
+        self.assertEqual(
+            loaded.payload.size_bytes,
+            0,
         )
 
     def test_database_assigns_increasing_ingest_sequence(self) -> None:
@@ -153,10 +183,12 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
                     (first.payload.sha256,),
                 )
 
-                count = cursor.fetchone()[0]
+                row = cursor.fetchone()
+
+        assert row is not None
 
         self.assertEqual(
-            count,
+            row[0],
             1,
         )
 
@@ -168,15 +200,21 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
             content=b"first-payload",
         )
 
-        self.store.append(first)
+        self.store.append(
+            first
+        )
 
         second = self._draft(
             envelope_id=envelope_id,
             content=b"second-payload",
         )
 
-        with self.assertRaises(DuplicateEnvelopeError):
-            self.store.append(second)
+        with self.assertRaises(
+            DuplicateEnvelopeError
+        ):
+            self.store.append(
+                second
+            )
 
         with self.connection.transaction():
             with self.connection.cursor() as cursor:
@@ -189,19 +227,85 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
                     (second.payload.sha256,),
                 )
 
-                count = cursor.fetchone()[0]
+                row = cursor.fetchone()
+
+        assert row is not None
 
         self.assertEqual(
-            count,
+            row[0],
             0,
         )
+
+    def test_database_rejects_invalid_payload_digest(self) -> None:
+        with self.assertRaises(
+            PsycopgError
+        ):
+            with self.connection.transaction():
+                with self.connection.cursor() as cursor:
+                    cursor.execute(
+                        """
+                        INSERT INTO kordaxis.raw_payloads (
+                            sha256,
+                            content
+                        )
+                        VALUES (%s, %s)
+                        """,
+                        (
+                            "0" * 64,
+                            b"content-with-different-digest",
+                        ),
+                    )
+
+    def test_raw_payload_update_is_rejected(self) -> None:
+        persisted = self.store.append(
+            self._draft()
+        )
+
+        with self.assertRaises(
+            PsycopgError
+        ):
+            with self.connection.transaction():
+                with self.connection.cursor() as cursor:
+                    cursor.execute(
+                        """
+                        UPDATE kordaxis.raw_payloads
+                        SET content = %s
+                        WHERE sha256 = %s
+                        """,
+                        (
+                            b"modified",
+                            persisted.payload.sha256,
+                        ),
+                    )
+
+    def test_raw_payload_delete_is_rejected(self) -> None:
+        persisted = self.store.append(
+            self._draft()
+        )
+
+        with self.assertRaises(
+            PsycopgError
+        ):
+            with self.connection.transaction():
+                with self.connection.cursor() as cursor:
+                    cursor.execute(
+                        """
+                        DELETE FROM kordaxis.raw_payloads
+                        WHERE sha256 = %s
+                        """,
+                        (
+                            persisted.payload.sha256,
+                        ),
+                    )
 
     def test_raw_envelope_update_is_rejected(self) -> None:
         persisted = self.store.append(
             self._draft()
         )
 
-        with self.assertRaises(PsycopgError):
+        with self.assertRaises(
+            PsycopgError
+        ):
             with self.connection.transaction():
                 with self.connection.cursor() as cursor:
                     cursor.execute(
@@ -210,7 +314,9 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
                         SET source_id = 'modified'
                         WHERE envelope_id = %s
                         """,
-                        (persisted.envelope_id,),
+                        (
+                            persisted.envelope_id,
+                        ),
                     )
 
     def test_raw_envelope_delete_is_rejected(self) -> None:
@@ -218,7 +324,9 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
             self._draft()
         )
 
-        with self.assertRaises(PsycopgError):
+        with self.assertRaises(
+            PsycopgError
+        ):
             with self.connection.transaction():
                 with self.connection.cursor() as cursor:
                     cursor.execute(
@@ -226,7 +334,26 @@ class PostgresEvidenceStoreTests(unittest.TestCase):
                         DELETE FROM kordaxis.raw_event_envelopes
                         WHERE envelope_id = %s
                         """,
-                        (persisted.envelope_id,),
+                        (
+                            persisted.envelope_id,
+                        ),
+                    )
+
+    def test_raw_envelope_truncate_is_rejected(self) -> None:
+        self.store.append(
+            self._draft()
+        )
+
+        with self.assertRaises(
+            PsycopgError
+        ):
+            with self.connection.transaction():
+                with self.connection.cursor() as cursor:
+                    cursor.execute(
+                        """
+                        TRUNCATE TABLE
+                            kordaxis.raw_event_envelopes
+                        """
                     )
 
     def test_ordered_loading_uses_ingest_sequence(self) -> None:
