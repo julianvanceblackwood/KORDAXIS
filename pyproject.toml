@@ -1,13 +1,36 @@
+[build-system]
+requires = [
+  "setuptools>=75"
+]
+build-backend = "setuptools.build_meta"
+
+
 [project]
 name = "kordaxis"
 version = "0.0.1"
 description = "Evidence-native cyber mission reasoning and decision system."
 readme = "README.md"
-requires-python = ">=3.12"
+
+requires-python = ">=3.12,<3.14"
+
 authors = [
   { name = "Julian Vance Blackwood" }
 ]
-dependencies = []
+
+dependencies = [
+  "psycopg[binary]==3.3.5"
+]
+
 
 [project.urls]
 Repository = "https://github.com/julianvanceblackwood/KORDAXIS"
+
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+
+[tool.setuptools.packages.find]
+where = [
+  "src"
+]
