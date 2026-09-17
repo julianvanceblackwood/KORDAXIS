@@ -33,6 +33,28 @@ as parts of one continuous engineering process.
 
 ---
 
+## Normative Boundary
+
+This document defines how KORDAXIS engineering work is conducted.
+
+It does not replace the domain specifications that define the semantics of the system.
+
+Normative domain semantics remain defined by dedicated artifacts including:
+
+- `docs/system-invariants.md`
+- `docs/event-evidence-model.md`
+- `docs/temporal-model.md`
+- `docs/epistemic-model.md`
+- `docs/trust-boundaries.md`
+- `docs/acceptance-tests.md`
+- `docs/benchmark-methodology.md`
+- relevant ADRs and versioned contracts
+
+Where this development method summarizes a domain concept and a dedicated specification differs, the dedicated specification governs.
+
+Changes to domain semantics must update the normative source first. This document may then be updated to reflect the resulting engineering process.
+
+
 # 1. Engineering Thesis
 
 KORDAXIS exists because operational cyber environments are not perfectly observable.
@@ -1551,40 +1573,18 @@ KORDAXIS development follows one overriding discipline:
 
 > **Never manufacture certainty that the evidence does not support.**
 
-The system should be capable of saying:
+The system must preserve the distinction between different state dimensions rather than inventing one universal status vocabulary.
 
-```text
-KNOWN
-```
+Claim classification remains governed by the versioned epistemic model.
 
-when justified.
+Observability, source health, trust, reachability, mission state, and authorization remain separate domains with their own semantics.
 
-It should be capable of saying:
+For example, degraded observability does not automatically mean that a claim is contradicted, and a strong claim classification does not imply healthy observation coverage.
 
-```text
-CONTRADICTED
-```
-
-when evidence conflicts.
-
-It should be capable of saying:
-
-```text
-DEGRADED
-```
-
-when observation quality weakens.
-
-And it must remain capable of saying:
-
-```text
-UNKNOWN
-```
-
-when that is the strongest defensible conclusion.
+`UNKNOWN` remains a first-class result wherever available evidence does not justify a stronger conclusion.
 
 The same discipline applies to the engineering process itself.
 
 We do not claim capability because code exists.
 
-We claim capability when the system behavior is understood, tested, measured, reproducible, and supported by evidence.
+We claim capability only when the relevant behavior is understood, tested, measured where necessary, reproducible within declared versions, and supported by evidence.
