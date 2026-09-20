@@ -6,8 +6,8 @@ KORDAXIS separates transport facts, normalized observations, preserved evidence,
 Represents one receipt episode for material delivered by a producer.
 
 Required semantics:
-- event_id — KORDAXIS identifier for this receipt episode
-- ingest_sequence — stable replay-order key assigned at ingestion
+- event_id: KORDAXIS identifier for this receipt episode
+- ingest_sequence: stable replay-order key assigned at ingestion
 - source_id
 - source_event_id when supplied
 - source_timestamp when supplied

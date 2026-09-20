@@ -1,4 +1,4 @@
-# ADR-0001 — Generation-Zero Architecture
+# ADR-0001: Generation-Zero Architecture
 
 ## Status
 
