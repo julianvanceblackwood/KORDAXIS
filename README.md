@@ -254,10 +254,10 @@ The same evidence may support multiple explanations.
 For example:
 
 ```text
-H1 — compromised employee session
-H2 — legitimate administrative activity
-H3 — CI / supply-chain compromise
-H4 — apparent incident amplified by degraded telemetry
+H1: compromised employee session
+H2: legitimate administrative activity
+H3: CI / supply-chain compromise
+H4: apparent incident amplified by degraded telemetry
 ```
 
 Hypotheses accumulate support, contradiction, missing expected evidence, source diversity, and model uncertainty independently.
@@ -466,7 +466,7 @@ Controlled variants later introduce:
 
 ---
 
-## Generation 0 : proof obligations
+## Generation 0: proof obligations
 
 Generation 0 does not pass because its output looks convincing.
 
@@ -530,7 +530,7 @@ See [Benchmark methodology](docs/benchmark-methodology.md).
 
 ---
 
-## Generation 0:  architecture
+## Generation 0: architecture
 
 Generation 0 begins as a **modular monolith**.
 
@@ -597,9 +597,9 @@ The first implementation must prove that:
 5. equal timestamps still receive deterministic ingest ordering;
 6. normalization remains downstream from the immutable evidence boundary.
 
-Active branch:
+Current implementation gate:
 
-`feat/raw-evidence-envelope`
+`Canonical Observation`
 
 Primary Generation 0: tracking issue:
 

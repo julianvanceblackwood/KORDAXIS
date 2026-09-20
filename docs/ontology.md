@@ -1,4 +1,4 @@
-# Canonical Ontology — Generation 0
+# Canonical Ontology: Generation 0
 
 Generation 0 keeps the ontology intentionally narrow. New entity classes require a demonstrated scenario or reasoning need.
 

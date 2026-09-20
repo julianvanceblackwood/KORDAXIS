@@ -9,22 +9,22 @@ Raw evidence and derived state remain logically separated even if they share one
 
 ## Initial modules
 
-- ingest — source adapters and raw envelope creation
-- normalize — canonical observation mapping
-- provenance — hashes, lineage, and evidence references
-- temporal — bitemporal state projection
-- trust — telemetry health and source-quality dimensions
-- epistemic — claims, contradictions, expected evidence, and hypotheses
-- authority — principals, delegation, and effective authority
-- reachability — transition feasibility and reachable-state computation
-- reconstruction — operation hypothesis assembly
-- mission — mission dependencies and consequence propagation
-- intervention — candidate controls and path-reduction analysis
-- simulation — counterfactual state projection
-- safety — evidence, policy, authorization, and mission gates
-- receipt — attributable decision records
-- replay — deterministic reconstruction
-- range — synthetic scenarios and ground-truth generation
+- ingest: source adapters and raw envelope creation
+- normalize: canonical observation mapping
+- provenance: hashes, lineage, and evidence references
+- temporal: bitemporal state projection
+- trust: telemetry health and source-quality dimensions
+- epistemic: claims, contradictions, expected evidence, and hypotheses
+- authority: principals, delegation, and effective authority
+- reachability: transition feasibility and reachable-state computation
+- reconstruction: operation hypothesis assembly
+- mission: mission dependencies and consequence propagation
+- intervention: candidate controls and path-reduction analysis
+- simulation: counterfactual state projection
+- safety: evidence, policy, authorization, and mission gates
+- receipt: attributable decision records
+- replay: deterministic reconstruction
+- range: synthetic scenarios and ground-truth generation
 
 ## Explicit exclusions
 Generation 0 does not require Kafka, Neo4j, Redis, Kubernetes, Elasticsearch, or microservices.
