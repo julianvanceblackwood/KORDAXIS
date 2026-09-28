@@ -2,21 +2,17 @@
 
 ## Evidence-Native Cyber Mission Reasoning & Decision System
 
-KORDAXIS is an engineering research system for reasoning about cyber environments when telemetry is incomplete, delayed, contradictory, degraded, or potentially manipulated.
+KORDAXIS is a defensive research system for reconstructing cyber state and evaluating intervention when the available telemetry is incomplete, late, contradictory, degraded, or untrustworthy.
 
-It is not a SIEM, SOC dashboard, vulnerability scanner, generic threat-intelligence aggregator, attack-graph visualization product, or LLM wrapper.
+The project is not trying to become another SIEM, scanner, threat-feed aggregator, graph viewer, or chatbot. Its scope is narrower and harder:
 
-KORDAXIS is built around a harder question:
-
-> **Given imperfect evidence, what can a defender justify, what remains unknown, what can an adversary still reach, what mission consequences follow, and which defensive intervention changes the outcome with the least operational disruption?**
+> **Given imperfect evidence, what can a defender justify, what remains unknown, what can an adversary still reach, what mission consequences follow, and which intervention changes that state with the least operational disruption?**
 
 ## System thesis
 
-KORDAXIS maintains an uncertainty-aware, bitemporal model of a cyber environment. It preserves evidence provenance, reconstructs operations from imperfect observations, models identity and effective authority, computes reachability and mission consequence, evaluates defensive interventions, and preserves the information required for deterministic replay.
+KORDAXIS separates preserved input from derived knowledge. From that boundary it builds temporal state, provenance, identity and authority relationships, reachability, mission consequence, and intervention analysis. Every derived layer is intended to be rebuildable from preserved inputs under declared versions.
 
-The governing principle is simple:
-
-> **A trustworthy security system must remain explicit about what it knows, why it knows it, and what it still cannot prove.**
+The design rule is straightforward: the system must be able to show what supports a conclusion, what contradicts it, and what is still unresolved.
 
 ## Core model
 
@@ -164,11 +160,11 @@ Primary tracking issue:
 
 [#1 Prove the evidence-to-decision vertical slice](https://github.com/julianvanceblackwood/KORDAXIS/issues/1)
 
-## Current implementation status
+## What exists today
 
-The raw evidence boundary is implemented.
+The raw evidence boundary is implemented and covered by unit plus PostgreSQL integration tests.
 
-Generation 0 currently has:
+Generation 0 currently provides:
 
 - exact-byte payload preservation
 - SHA-256 content identity over the preserved bytes
@@ -180,7 +176,7 @@ Generation 0 currently has:
 - integrity validation when evidence is reconstructed from persistence
 - unit and real PostgreSQL integration coverage in CI
 
-This establishes the boundary below normalization.
+That is the current implemented boundary. Canonical normalization and the reasoning layers above it are not yet claimed as complete.
 
 ## Current gate: Canonical Observation
 
@@ -301,11 +297,9 @@ Full definitions: [System invariants](docs/system-invariants.md).
 
 ## Engineering discipline
 
-Material changes enter through short-lived branches and pull requests.
+Material changes use short-lived branches and pull requests. Issues are kept for work that benefits from a durable engineering record: architectural changes, security-relevant problems, benchmark gaps, research questions, and reproducible defects.
 
-Issues are intentionally sparse and reserved for meaningful engineering objectives, architecture changes, security-relevant problems, benchmark gaps, research questions, and reproducible defects.
-
-Repository activity is not a performance metric.
+Commit volume is not used as a proxy for progress. A change belongs in the repository when it leaves behind a useful specification, implementation, test, measurement, failure analysis, or design decision.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Development method](docs/engineering/DEVELOPMENT_METHOD.md).
 
@@ -331,8 +325,6 @@ See [SECURITY.md](SECURITY.md).
 
 ## Standard
 
-KORDAXIS is not considered correct because its output looks convincing.
+A convincing output is not enough. KORDAXIS must remain inspectable when evidence is incomplete, sources disagree, observability degrades, authority propagates indirectly, or an intervention carries operational cost.
 
-It must remain defensible when evidence is incomplete, sources disagree, observability degrades, authority propagates indirectly, provenance becomes uncertain, and defensive actions have mission consequences.
-
-**Observe. Preserve. Corroborate. Challenge. Reconstruct. Compute. Simulate. Constrain. Decide. Prove.**
+The project is judged by whether those conditions remain explicit in the data model, the tests, the replay record, and the final decision trace.
