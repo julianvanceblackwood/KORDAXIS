@@ -1,49 +1,73 @@
 # KORDAXIS Manifesto
 
-KORDAXIS is built around a simple constraint: a defender rarely sees the complete world.
+KORDAXIS starts from an uncomfortable premise: a defender rarely observes the complete system.
 
-Telemetry can be delayed. Sensors can fail. Evidence can conflict. Identity can be delegated. Authority can propagate indirectly. Software provenance can be incomplete. An attacker may deliberately manipulate what defenders are able to observe.
+Telemetry arrives late. Sensors fail. Sources disagree. Identity is delegated. Authority crosses service and trust boundaries. Provenance is sometimes incomplete, and an adversary may influence the evidence a defender gets to see.
 
-KORDAXIS therefore does not optimize for appearing certain. It optimizes for making uncertainty explicit, reproducible, and operationally useful.
+The project is therefore not designed to maximize certainty. It is designed to preserve the difference between what was observed, what can be supported, what remains plausible, and what is still unknown.
 
-## Four objects must remain distinct
+## Keep the layers separate
 
 ### Observation
-What a source reported.
+
+A record of what a source asserted or what a defined observation process produced.
+
+An observation is attributable, but it is not automatically true.
 
 ### Evidence
-Material whose origin, integrity, provenance, and temporal properties are represented.
+
+Preserved material with enough context to inspect origin, integrity, provenance, collection conditions, and time.
+
+Evidence can support a conclusion without proving it.
 
 ### Claim
-A falsifiable proposition supported or contradicted by evidence.
+
+A falsifiable proposition evaluated against supporting evidence, contradiction, missing expected evidence, source dependence, temporal consistency, and model assumptions.
+
+A claim is always interpreted under a declared policy or model version.
 
 ### Decision
-An action selected from claims, constraints, consequences, and uncertainty.
 
-These concepts must never collapse into one another.
+A proposed defensive action evaluated against evidence sufficiency, uncertainty, mission impact, reversibility, policy, authorization, and counterfactual consequence.
 
-## Doctrine
+Recommendation and authority remain separate.
 
-OBSERVE.
+## Operating doctrine
 
-PRESERVE.
+The working sequence is:
 
-CORROBORATE.
+```text
+observe
+preserve
+corroborate
+challenge
+reconstruct
+compute
+simulate
+constrain
+decide
+prove
+```
 
-CHALLENGE.
+The sequence matters. Interpretation does not replace preservation. Confidence does not erase contradiction. Reachability does not imply mission failure. A useful recommendation does not create permission to act.
 
-RECONSTRUCT.
+## What the project must survive
 
-COMPUTE.
+KORDAXIS is only interesting if its reasoning remains inspectable when the environment becomes difficult:
 
-SIMULATE.
+- evidence is incomplete
+- clocks disagree
+- duplicate events arrive
+- expected telemetry disappears
+- a trusted source degrades
+- two sources conflict
+- authority is indirect or temporary
+- a technically effective intervention carries mission cost
 
-CONSTRAIN.
+Under those conditions the system must be able to say not only what it concluded, but which preserved inputs, versions, assumptions, and decision rules produced that conclusion.
 
-DECIDE.
+## Final constraint
 
-PROVE.
+KORDAXIS must never manufacture certainty that the evidence does not support.
 
-## Final standard
-
-KORDAXIS should remain trustworthy precisely when its information becomes incomplete and its environment becomes hostile.
+When the strongest defensible answer is unknown, the system should say so.
