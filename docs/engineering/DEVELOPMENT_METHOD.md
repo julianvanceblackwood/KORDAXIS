@@ -2,11 +2,11 @@
 
 ## Purpose
 
-KORDAXIS is developed through an evidence-native, foundations-first systems engineering method.
+KORDAXIS is developed from the evidence boundary outward. A new abstraction is introduced only after the problem, failure mode, and property it must preserve are clear enough to test.
 
-The objective is not to maximize feature count, commit volume, architectural complexity, or visual polish. The objective is to produce behavior that can be explained, tested, challenged, reproduced, and traced to evidence.
+The method favors small, falsifiable steps over feature volume. A design is useful when another engineer can inspect its inputs, assumptions, failure behavior, and evidence.
 
-> Understanding precedes implementation. Evidence precedes confidence.
+> Understand the boundary. State the invariant. Then implement.
 
 ## Normative authority
 
@@ -89,9 +89,9 @@ A problem that cannot be bounded is not ready for implementation.
 
 ## Foundations rule
 
-Study prerequisites because correctness depends on them, not because they make the project look advanced.
+Study a prerequisite when misunderstanding it could change the design or invalidate a result. Do not turn prerequisite study into a display of breadth.
 
-Possible foundations include logic, sets, relations, probability, graph theory, algorithms, databases, operating systems, networking, distributed systems, concurrency, cryptography, measurement, security engineering, and experimental design.
+Depending on the problem, that may require logic, sets and relations, probability, graph theory, algorithms, databases, operating systems, networking, distributed systems, concurrency, cryptography, measurement, security engineering, or experimental design.
 
 For each topic:
 
@@ -423,23 +423,11 @@ Commit volume is not a performance metric.
 
 ## Repository evidence
 
-Public repository history is treated as engineering evidence.
+Repository history should make the reasoning behind a change recoverable.
 
-Strong artifacts include:
+Useful public artifacts include bounded problem statements, versioned specifications, controlled experiments, benchmarks, threat models, architecture decisions, invariant-driven tests, failure analysis, explicit limitations, reproducible outputs, and review history.
 
-- falsifiable problem statements
-- versioned specifications
-- controlled experiments
-- benchmarks
-- threat models
-- architecture decisions
-- invariant-driven tests
-- failure analysis
-- explicit limitations
-- reproducible outputs
-- review history
-
-The repository should show what was established and how it was challenged.
+The goal is not to look busy. The goal is to leave enough evidence that a reviewer can see what changed, what was tested, what failed, and why the final design survived review.
 
 ## Operator surface
 
@@ -523,20 +511,7 @@ Implementation begins only after these contracts are precise enough to test.
 
 ## Definition of progress
 
-A development session produces durable progress when it strengthens at least one of:
-
-- understanding
-- specification
-- evidence
-- implementation
-- testing
-- measurement
-- reproducibility
-- security
-- architecture clarity
-- failure understanding
-
-A commit is justified when the repository gains durable engineering value.
+A development session does not need a commit to be useful. It becomes repository work when it leaves behind something durable: a clearer contract, a tested implementation, a measurement, a failure analysis, a reproducible experiment, or a design decision that changes how the system is built.
 
 KORDAXIS follows one final rule:
 
