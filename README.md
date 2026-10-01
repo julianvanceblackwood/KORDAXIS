@@ -4,7 +4,7 @@
 
 KORDAXIS is a defensive research system for reconstructing cyber state and evaluating intervention when the available telemetry is incomplete, late, contradictory, degraded, or untrustworthy.
 
-The project is not trying to become another SIEM, scanner, threat-feed aggregator, graph viewer, or chatbot. Its scope is narrower and harder:
+KORDAXIS is not a SIEM, scanner, threat-feed aggregator, graph viewer, or chatbot. Its scope is specific:
 
 > **Given imperfect evidence, what can a defender justify, what remains unknown, what can an adversary still reach, what mission consequences follow, and which intervention changes that state with the least operational disruption?**
 
@@ -12,7 +12,7 @@ The project is not trying to become another SIEM, scanner, threat-feed aggregato
 
 KORDAXIS separates preserved input from derived knowledge. From that boundary it builds temporal state, provenance, identity and authority relationships, reachability, mission consequence, and intervention analysis. Every derived layer is intended to be rebuildable from preserved inputs under declared versions.
 
-The design rule is straightforward: the system must be able to show what supports a conclusion, what contradicts it, and what is still unresolved.
+The system must be able to show what supports a conclusion, what contradicts it, and what remains unresolved.
 
 ## Core model
 
@@ -162,7 +162,7 @@ Primary tracking issue:
 
 ## What exists today
 
-The raw evidence boundary is implemented and covered by unit plus PostgreSQL integration tests.
+The raw evidence boundary is implemented and covered by unit tests and PostgreSQL integration tests.
 
 Generation 0 currently provides:
 
@@ -176,7 +176,7 @@ Generation 0 currently provides:
 - integrity validation when evidence is reconstructed from persistence
 - unit and real PostgreSQL integration coverage in CI
 
-That is the current implemented boundary. Canonical normalization and the reasoning layers above it are not yet claimed as complete.
+That is the implemented boundary. Canonical normalization and the reasoning layers above it remain incomplete.
 
 ## Current gate: Canonical Observation
 
@@ -307,7 +307,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Development method](docs/enginee
 
 KORDAXIS is defensive and controlled research infrastructure.
 
-Generation 0 deliberately excludes:
+Generation 0 excludes:
 
 - autonomous production remediation
 - real-target offensive exploitation

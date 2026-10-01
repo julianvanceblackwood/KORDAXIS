@@ -4,7 +4,7 @@
 
 KORDAXIS is developed from the evidence boundary outward. A new abstraction is introduced only after the problem, failure mode, and property it must preserve are clear enough to test.
 
-The method favors small, falsifiable steps over feature volume. A design is useful when another engineer can inspect its inputs, assumptions, failure behavior, and evidence.
+The method favors small, falsifiable steps. A design is useful when another engineer can inspect its inputs, assumptions, failure behavior, and evidence.
 
 > Understand the boundary. State the invariant. Then implement.
 
@@ -89,7 +89,7 @@ A problem that cannot be bounded is not ready for implementation.
 
 ## Foundations rule
 
-Study a prerequisite when misunderstanding it could change the design or invalidate a result. Do not turn prerequisite study into a display of breadth.
+Study a prerequisite when misunderstanding it could change the design or invalidate a result. Do not add prerequisite study that does not affect the design.
 
 Depending on the problem, that may require logic, sets and relations, probability, graph theory, algorithms, databases, operating systems, networking, distributed systems, concurrency, cryptography, measurement, security engineering, or experimental design.
 
@@ -230,7 +230,7 @@ Important implementation lines should be explainable in terms of syntax, type be
 
 KORDAXIS owns its domain semantics, invariants, reasoning models, data contracts, experiments, and replay rules.
 
-It does not reimplement mature infrastructure or cryptographic primitives merely to appear self-contained. Proven primitives are reused when doing so reduces correctness and security risk.
+It does not reimplement mature infrastructure or cryptographic primitives without a project-specific reason. Established primitives are reused when that reduces correctness or security risk.
 
 ## Complexity rule
 
@@ -248,7 +248,7 @@ A new service, broker, cache, database, orchestration layer, or distributed boun
 - backpressure requirement
 - coordination requirement
 
-Technology choice is not portfolio evidence by itself.
+A technology choice must be justified by the problem it solves.
 
 ## Verification discipline
 
@@ -379,7 +379,7 @@ Ask:
 - is there a simpler design with equal evidence
 - does the change introduce an undeclared dependency
 
-Review friction is expected when evidence is weak.
+Weak evidence should stop or revise the change.
 
 ## Git and GitHub lifecycle
 
@@ -427,7 +427,7 @@ Repository history should make the reasoning behind a change recoverable.
 
 Useful public artifacts include bounded problem statements, versioned specifications, controlled experiments, benchmarks, threat models, architecture decisions, invariant-driven tests, failure analysis, explicit limitations, reproducible outputs, and review history.
 
-The goal is not to look busy. The goal is to leave enough evidence that a reviewer can see what changed, what was tested, what failed, and why the final design survived review.
+Repository history should leave enough evidence for a reviewer to see what changed, what was tested, what failed, and why the final design survived review.
 
 ## Operator surface
 
