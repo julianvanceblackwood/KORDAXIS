@@ -328,3 +328,4 @@ See [SECURITY.md](SECURITY.md).
 A convincing output is not enough. KORDAXIS must remain inspectable when evidence is incomplete, sources disagree, observability degrades, authority propagates indirectly, or an intervention carries operational cost.
 
 The project is judged by whether those conditions remain explicit in the data model, the tests, the replay record, and the final decision trace.
+
