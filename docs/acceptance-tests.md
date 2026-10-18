@@ -6,7 +6,7 @@ Generation 0 passes only when its material claims have automated evidence.
 The same exact raw payload bytes produce the same raw payload hash. Parsing or normalization cannot change the preserved raw digest.
 
 ## AT-002 Schema rejection
-Malformed input cannot enter canonical projection without an explicit failure state.
+Malformed input, unsupported declared text encoding, duplicate JSON object member names, or source-contract violations cannot enter canonical projection without an explicit failure state. Raw evidence remains preserved.
 
 ## AT-003 Bitemporal reconstruction
 Fixtures reproduce both world-at-T and knowledge-at-K expectations using declared interval semantics.
