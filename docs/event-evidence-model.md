@@ -136,6 +136,35 @@ Every material Observation must remain attributable to preserved raw evidence an
 
 The Canonical Observation contract is the current Generation-0 engineering gate and is not finalized by this document.
 
+### JSON source boundary
+
+For source contracts that declare JSON input, Generation 0 keeps representation identity separate from semantic interpretation.
+
+- RawPayload remains the exact received bytes. Decoding and parsing are downstream derived operations.
+- Inter-system JSON input is treated as UTF-8 in accordance with RFC 8259 unless a future source contract explicitly defines a closed-ecosystem exception.
+- JSON object member order does not define semantic identity. Reordering members may change the raw byte digest while preserving the same parsed name/value mapping.
+- Duplicate object member names are rejected at the normalization boundary instead of accepting parser-specific first-value, last-value, or multi-value behavior. RFC 8259 notes that receiver behavior is unpredictable when object names are not unique.
+- JSON syntax validity does not imply source-schema validity, semantic validity, source trust, or truth.
+- Deterministic JSON serialization and Canonical Observation semantics are separate concerns. RFC 8785 is a reference for representation-level canonicalization, but adopting a canonical JSON encoding would not by itself define observation identity or establish semantic truth.
+
+The boundary is therefore:
+
+~~~text
+exact bytes
+    ↓
+declared text decoding
+    ↓
+syntax parsing
+    ↓
+source-contract validation
+    ↓
+semantic normalization
+    ↓
+Canonical Observation
+~~~
+
+Failure at any derived stage must remain attributable to the preserved RawEventEnvelope and must not mutate or replace RawPayload.
+
 ## Evidence
 
 Evidence binds preserved observations or artifacts with integrity, provenance, temporal, collection, and impairment context.
