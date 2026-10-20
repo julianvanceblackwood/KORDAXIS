@@ -103,6 +103,44 @@ For each topic:
 
 Do not skip a prerequisite that materially affects correctness. Do not add one for appearance.
 
+## Build-to-learn discipline
+
+KORDAXIS is also the primary learning environment for the engineering work behind the system. Learning is driven by real project decisions rather than separated into a parallel curriculum.
+
+When a development problem exposes a missing prerequisite, the working loop is:
+
+~~~text
+Engineering question
+    ↓
+Identify the missing foundation
+    ↓
+Study only what can change the design
+    ↓
+Explain the concept without copying the reference
+    ↓
+Apply it to the current KORDAXIS boundary
+    ↓
+Implement
+    ↓
+Test and debug from evidence
+    ↓
+Reconstruct or transfer the idea in a different case
+~~~
+
+The standard is demonstrated understanding, not note volume.
+
+For material concepts:
+
+- important code is explainable line by line, including why the line exists and which failure it prevents
+- unfamiliar language behavior, protocol rules, serialization rules, or library semantics are investigated before they become hidden assumptions
+- a copied explanation does not close a learning gate; the concept must be restated, applied, or reconstructed
+- notes are kept compact and should preserve a mental model, an invariant, a failure that changed understanding, or a reusable engineering principle
+- external specifications are consulted when correctness depends on a protocol or formal contract
+- debugging begins with an observed failure and a hypothesis, not with random edits
+- assessment is based on reasoning, assumptions, trade-offs, failure analysis, and transfer, not vocabulary or memorized definitions
+
+Project progress and learning progress therefore use the same evidence: clearer contracts, better explanations, stronger tests, reproducible experiments, and implementations whose behavior can be defended.
+
 ## Semantic contract review
 
 A data model is not correct merely because its types compile.
