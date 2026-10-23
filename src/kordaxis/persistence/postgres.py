@@ -1,4 +1,4 @@
-"""PostgreSQL persistence for append-only raw evidence."""
+"""PostgreSQL persistence for append-only raw-evidence records."""
 
 from collections.abc import Sequence
 
@@ -20,7 +20,7 @@ from .errors import (
 
 
 class PostgresEvidenceStore:
-    """Persist and recover raw evidence using PostgreSQL."""
+    """Persist and recover raw evidence through the application boundary."""
 
     def __init__(self, connection: Connection) -> None:
         self._connection = connection
@@ -139,7 +139,7 @@ class PostgresEvidenceStore:
         self,
         envelope_id: str,
     ) -> RawEventEnvelope:
-        """Load one envelope and revalidate exact payload integrity."""
+        """Load one envelope and revalidate its payload content identity."""
 
         with self._connection.transaction():
             with self._connection.cursor() as cursor:
@@ -179,7 +179,7 @@ class PostgresEvidenceStore:
         sequence_exclusive: int,
         limit: int = 1000,
     ) -> Sequence[RawEventEnvelope]:
-        """Load receipt episodes in authoritative ingest order."""
+        """Load receipt episodes in database-assigned ingest order."""
 
         if sequence_exclusive < 0:
             raise ValueError(
@@ -230,7 +230,7 @@ class PostgresEvidenceStore:
     def _row_to_envelope(
         row: tuple[object, ...],
     ) -> RawEventEnvelope:
-        """Convert one database row into a validated domain object."""
+        """Convert one database row and rerun domain validation."""
 
         try:
             payload = RawPayload(
