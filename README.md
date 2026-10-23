@@ -51,7 +51,7 @@ External Sources
       ↓
 Raw Event Ingestion
       ↓
-Immutable Raw Evidence
+Preserved Raw Evidence
       ↓
 Canonical Observations
       ↓
@@ -177,6 +177,8 @@ Generation 0 currently provides:
 - unit and real PostgreSQL integration coverage in CI
 
 That is the implemented boundary. Canonical normalization and the reasoning layers above it remain incomplete.
+
+At the persistence layer, Generation 0 claims append-only enforcement through the normal application path. It does not claim tamper-proof immutability against a sufficiently privileged database owner or superuser.
 
 ## Current gate: Canonical Observation
 
