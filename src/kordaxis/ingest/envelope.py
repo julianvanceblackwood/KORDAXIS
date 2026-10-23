@@ -1,4 +1,4 @@
-"""Immutable raw-ingress domain objects."""
+"""Raw-ingress domain objects with immutable in-memory fields."""
 
 from dataclasses import dataclass
 from datetime import datetime
@@ -23,7 +23,7 @@ def _require_aware_datetime(name: str, value: datetime) -> None:
 
 @dataclass(frozen=True, slots=True)
 class RawPayload:
-    """Exact immutable payload bytes and their content identity."""
+    """Represent exact payload bytes and their SHA-256 content identity."""
 
     content: bytes
     sha256: str
@@ -57,7 +57,7 @@ class RawPayload:
 
 @dataclass(frozen=True, slots=True)
 class RawEventDraft:
-    """A receipt episode before persistence assigns ingest order."""
+    """Represent one receipt episode before persistence assigns ingest order."""
 
     envelope_id: str
     source_id: str
@@ -97,7 +97,7 @@ class RawEventDraft:
 
 @dataclass(frozen=True, slots=True)
 class RawEventEnvelope:
-    """A persisted immutable KORDAXIS receipt episode."""
+    """Represent one persisted receipt with immutable in-memory fields."""
 
     envelope_id: str
     source_id: str
@@ -147,7 +147,7 @@ class RawEventEnvelope:
         *,
         ingest_sequence: int,
     ) -> Self:
-        """Materialize a persisted envelope from a receipt draft."""
+        """Construct a persisted receipt from a draft and assigned ingest order."""
 
         return cls(
             envelope_id=draft.envelope_id,
