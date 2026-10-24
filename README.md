@@ -232,6 +232,12 @@ Implementation follows semantic review. Every material field must answer:
 - must replay reproduce it
 - which version defines its semantics
 
+## Verified boundary and future reasoning
+
+![KORDAXIS capability-scoped architecture differentiating raw-evidence implementation from proposed observation and decision layers](assets/technical-map.svg)
+
+*Solid elements describe the documented raw-evidence boundary. Dashed stages are planned research and are not implemented capability claims.*
+
 ## Architecture
 
 Generation 0 is a modular monolith with PostgreSQL as authoritative persistence.
