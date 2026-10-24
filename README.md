@@ -281,6 +281,7 @@ Full definitions: [System invariants](docs/system-invariants.md).
 
 | Document | Purpose |
 | --- | --- |
+| [External evaluation](docs/EXTERNAL_EVALUATION.md) | Defines reproducible external review scope, present claims and review questions |
 | [Development method](docs/engineering/DEVELOPMENT_METHOD.md) | Defines the evidence-native engineering, verification, replay, review, and Git/GitHub process |
 | [Manifesto](docs/manifesto.md) | Defines the reasoning doctrine |
 | [Formal problem definition](docs/problem-definition.md) | Formalizes knowledge state, reachability, and intervention problems |
