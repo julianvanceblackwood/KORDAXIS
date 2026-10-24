@@ -8,6 +8,12 @@ KORDAXIS is not a SIEM, scanner, threat-feed aggregator, graph viewer, or chatbo
 
 > **Given imperfect evidence, what can a defender justify, what remains unknown, what can an adversary still reach, what mission consequences follow, and which intervention changes that state with the least operational disruption?**
 
+## Research flow at a glance
+
+![Animated KORDAXIS evidence-handling research schematic](assets/research-flow.gif)
+
+*Conceptual illustration only; not a recording of the unimplemented reasoning layers.* The [external evaluation brief](docs/EXTERNAL_EVALUATION.md) separates the implemented raw-evidence boundary from planned normalization and reasoning gates.
+
 ## System thesis
 
 KORDAXIS separates preserved input from derived knowledge. From that boundary it builds temporal state, provenance, identity and authority relationships, reachability, mission consequence, and intervention analysis. Every derived layer is intended to be rebuildable from preserved inputs under declared versions.
