@@ -1,3 +1,9 @@
+<p align="center"><img src="assets/research-hero.svg" width="100%" alt="KORDAXIS technical identity and conceptual chain from raw evidence through defended decisions." /></p>
+
+[**Implemented boundary**](#what-exists-today) · [**Independent review**](docs/EXTERNAL_EVALUATION.md) · [**Architecture**](docs/generation-zero-architecture.md) · [**Verification discipline**](docs/acceptance-tests.md)
+
+**IMPLEMENTED:** byte-preserving evidence persistence and its integrity tests. **NEXT GATE:** canonical observation; mission-level reasoning is not yet implemented.
+
 # KORDAXIS
 
 ## Evidence-Native Cyber Mission Reasoning & Decision System
@@ -7,12 +13,6 @@ KORDAXIS is a defensive research system for reconstructing cyber state and evalu
 KORDAXIS is not a SIEM, scanner, threat-feed aggregator, graph viewer, or chatbot. Its scope is specific:
 
 > **Given imperfect evidence, what can a defender justify, what remains unknown, what can an adversary still reach, what mission consequences follow, and which intervention changes that state with the least operational disruption?**
-
-## Research flow at a glance
-
-![Animated KORDAXIS evidence-handling research schematic](assets/research-flow.gif)
-
-*Conceptual illustration only; not a recording of the unimplemented reasoning layers.* The [external evaluation brief](docs/EXTERNAL_EVALUATION.md) separates the implemented raw-evidence boundary from planned normalization and reasoning gates.
 
 ## System thesis
 
@@ -165,6 +165,17 @@ Controlled variants introduce event loss, delivery delay, clock skew, duplicate 
 Primary tracking issue:
 
 [#1 Prove the evidence-to-decision vertical slice](https://github.com/julianvanceblackwood/KORDAXIS/issues/1)
+
+## Visual model
+
+<details>
+<summary><strong>View animated evidence-flow study</strong></summary>
+
+![KORDAXIS conceptual evidence flow](assets/research-flow.gif)
+
+Conceptual only. The implemented boundary ends at preserved raw evidence and associated persistence tests. [External evaluation](docs/EXTERNAL_EVALUATION.md).
+
+</details>
 
 ## What exists today
 
