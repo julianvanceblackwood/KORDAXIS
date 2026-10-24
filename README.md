@@ -1,5 +1,8 @@
 <p align="center"><img src="assets/research-hero.svg" width="100%" alt="KORDAXIS technical identity and conceptual chain from raw evidence through defended decisions." /></p>
 
+[![Python core](https://github.com/julianvanceblackwood/KORDAXIS/actions/workflows/python-core.yml/badge.svg)](https://github.com/julianvanceblackwood/KORDAXIS/actions/workflows/python-core.yml)
+[![Foundation](https://github.com/julianvanceblackwood/KORDAXIS/actions/workflows/foundation.yml/badge.svg)](https://github.com/julianvanceblackwood/KORDAXIS/actions/workflows/foundation.yml)
+
 [**Implemented boundary**](#what-exists-today) · [**Independent review**](docs/EXTERNAL_EVALUATION.md) · [**Architecture**](docs/generation-zero-architecture.md) · [**Verification discipline**](docs/acceptance-tests.md)
 
 **IMPLEMENTED:** byte-preserving evidence persistence and its integrity tests. **NEXT GATE:** canonical observation; mission-level reasoning is not yet implemented.
