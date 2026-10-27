@@ -222,6 +222,8 @@ The central question is:
 
 The next slice must establish explicit contracts for observation identity, source attribution, parsing failure, normalization versions, schema evolution, temporal semantics, absence and UNKNOWN semantics, provenance, and deterministic replay.
 
+For JSON sources, representation rules such as UTF-8 decoding, duplicate member rejection, and object-member order remain separate from semantic observation identity. See the [Event and evidence model](docs/event-evidence-model.md#json-source-boundary).
+
 Implementation follows semantic review. Every material field must answer:
 
 - what does it mean
