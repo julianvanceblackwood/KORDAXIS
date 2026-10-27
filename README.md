@@ -207,7 +207,7 @@ The next engineering gate is:
 ~~~text
 Persisted Raw Evidence
         ↓
-Parsing
+Strict Source Decoding / Parsing
         ↓
 Canonical Observation
         ↓
