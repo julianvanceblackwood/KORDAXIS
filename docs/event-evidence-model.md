@@ -143,7 +143,7 @@ For source contracts that declare JSON input, Generation 0 keeps representation 
 - RawPayload remains the exact received bytes. Decoding and parsing are downstream derived operations.
 - Inter-system JSON input is treated as UTF-8 in accordance with RFC 8259 unless a future source contract explicitly defines a closed-ecosystem exception.
 - JSON object member order does not define semantic identity. Reordering members may change the raw byte digest while preserving the same parsed name/value mapping.
-- Duplicate object member names are rejected at the normalization boundary instead of accepting parser-specific first-value, last-value, or multi-value behavior. RFC 8259 notes that receiver behavior is unpredictable when object names are not unique.
+- Duplicate object member names are rejected at the normalization boundary instead of accepting parser-specific first-value, last-value, or multi-value behavior. The parser configuration must surface duplicates before conversion to an ordinary mapping; silently discarding earlier members does not satisfy this boundary. RFC 8259 notes that receiver behavior is unpredictable when object names are not unique.
 - JSON syntax validity does not imply source-schema validity, semantic validity, source trust, or truth.
 - Deterministic JSON serialization and Canonical Observation semantics are separate concerns. RFC 8785 is a reference for representation-level canonicalization, but adopting a canonical JSON encoding would not by itself define observation identity or establish semantic truth.
 
