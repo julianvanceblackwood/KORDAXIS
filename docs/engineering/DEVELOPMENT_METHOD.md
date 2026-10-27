@@ -544,6 +544,9 @@ Before a Canonical Observation field is accepted, review:
 - must replay reproduce it
 - which input determines it
 - which version determines its semantics
+- for JSON input, can duplicate member names be detected before mapping collapses them
+- does any logic incorrectly treat JSON object member order as semantic identity
+- is representation canonicalization being confused with semantic observation identity
 
 Implementation begins only after these contracts are precise enough to test.
 
