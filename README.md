@@ -207,7 +207,13 @@ The next engineering gate is:
 ~~~text
 Persisted Raw Evidence
         ↓
-Strict Source Decoding / Parsing
+Declared Text Decoding
+        ↓
+Syntax Parsing
+        ↓
+Source-Contract Validation
+        ↓
+Semantic Normalization
         ↓
 Canonical Observation
         ↓
